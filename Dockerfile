@@ -1,3 +1,3 @@
 FROM node:18-alpine
 
-CMD ["echo", "Holis"]
+CMD ["echo", "wenos días alegrias"]
