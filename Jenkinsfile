@@ -14,7 +14,7 @@ pipeline{
 
         stage('build') {
             steps {
-                sh 'echo "Building the project..."'
+                bat 'echo "Building the project..."'
             }
         }
     }
