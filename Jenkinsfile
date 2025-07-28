@@ -19,7 +19,7 @@ pipeline{
         stage('build') {
             steps {
                 script {
-                    docker.build(DOCKER_IMAGE)
+                    dockerImage = docker.build(DOCKER_IMAGE)
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline{
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                        docker.image.push('latest')
+                        dockerImage.push('latest')
                     }
                 }
             }
