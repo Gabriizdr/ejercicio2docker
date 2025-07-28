@@ -1,6 +1,10 @@
 pipeline{
     agent any 
 
+    environment {
+        DOCKER_IMAGE = 'gabiizdr/ejercicio2docker'
+    }
+
     triggers {
         githubPush()
     }
@@ -14,7 +18,9 @@ pipeline{
 
         stage('build') {
             steps {
-                bat 'echo "Building the project..."'
+                script {
+                    docker.build(DOCKER_IMAGE)
+                }
             }
         }
     }
