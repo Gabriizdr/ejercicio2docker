@@ -1,5 +1,5 @@
 pipeline{
-    agent any ##configuración del agente general con any
+    agent any 
 
     trigger {
         githubPush()
