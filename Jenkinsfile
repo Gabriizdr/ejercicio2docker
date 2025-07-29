@@ -50,4 +50,25 @@ pipeline{ //son importantes en los flujos y es la palabra reservada pipeline, se
             }
         }
     }
+    post{
+        success {
+            script {
+                mail to: 'gaby94dr@gmail.com',
+                from: 'gaby94dr@gmail.com',
+                subject: "Docker image ${env.JOB_NAME} #${env.BUILD_NUMBER} built successfully",
+                body: "Docker image ${env.JOB_NAME} #${env.BUILD_NUMBER} built successfully ${env.BUILD_URL}" //enviamos un correo electrónico con el asunto, cuerpo y demás
+            }
+
+        }
+        failure {
+            script{
+                def logLines = currentBuild.rawBuild.getLog(150) //obtenemos las últimas 100 líneas del log de la construcción actual
+                def logText = logLines.join('\n') //unimos las líneas en un solo texto
+                mail to: 'gaby94dr@gmail.com',
+                from: 'gaby94dr@gmail.com',
+                subject: "Failed to build docker image ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Failed to build docker image ${env.JOB_NAME} #${env.BUILD_NUMBER} ${env.BUILD_URL} \n\n ${logText}" //enviamos un correo electrónico con el asunto, cuerpo y demás, enviamos el log del error
+            }
+        }
+    }
 }
