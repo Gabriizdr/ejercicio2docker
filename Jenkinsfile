@@ -43,7 +43,7 @@ pipeline{ //son importantes en los flujos y es la palabra reservada pipeline, se
                         mail to: 'gaby94dr@gmail.com',
                          from: 'gaby94dr@gmail.com',
                          subject: "Failed to build docker image ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                         body: "Failed to build docker image ${env.JOB_NAME} #${env.BUILD_NUMBER} ${env.BUILD_URL}\n\nCheck console output at ${env.BUILD_URL} \n\n ${logText}" //enviamos un correo electrónico con el asunto, cuerpo y demás, enviamos el log del error
+                         body: "Failed to build docker image ${env.JOB_NAME} #${env.BUILD_NUMBER} ${env.BUILD_URL} \n\n ${logText}" //enviamos un correo electrónico con el asunto, cuerpo y demás, enviamos el log del error
                     }
                     
                 }
