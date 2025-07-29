@@ -2,7 +2,7 @@ pipeline{ //son importantes en los flujos y es la palabra reservada pipeline, se
     agent any //tipo de agente especifico, tipo any, para una configuración general
 
     environment {
-        DOCKER_IMAGE = 'gabiizdr/ejercicio2docker' //variable de entorno, para que no tengamos que escribir el nombre de la imagen cada vez que la queramos usar, se usa para que sea más fácil de leer y mantener
+        DOCKER_IMAGE = 'gabiizdraa/ejercicio2docker' //variable de entorno, para que no tengamos que escribir el nombre de la imagen cada vez que la queramos usar, se usa para que sea más fácil de leer y mantener
     }
 
     triggers { //para que se ejecute de forma automática cada cierto tiempo
