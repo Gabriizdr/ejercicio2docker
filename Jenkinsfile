@@ -37,10 +37,15 @@ pipeline{ //son importantes en los flujos y es la palabra reservada pipeline, se
                     bat 'echo  "Docker image pushed successfully!"'
                 }
                 failure {
-                    mail to: 'gaby94dr@gmail.com',
+                    script{
+                        def logLines = currentBuild.rawBuild.getLog(100) //obtenemos las últimas 100 líneas del log de la construcción actual
+                        def logText = logLines.join('\n') //unimos las líneas en un solo texto
+                        mail to: 'gaby94dr@gmail.com',
                          from: 'gaby94dr@gmail.com',
                          subject: "Failed to build docker image ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                         body: "Failed to build docker image ${env.JOB_NAME} #${env.BUILD_NUMBER} ${env.BUILD_URL}\n\nCheck console output at ${env.BUILD_URL}"
+                         body: "Failed to build docker image ${env.JOB_NAME} #${env.BUILD_NUMBER} ${env.BUILD_URL}\n\nCheck console output at ${env.BUILD_URL} \n\n ${logText}" //enviamos un correo electrónico con el asunto, cuerpo y demás, enviamos el log del error
+                    }
+                    
                 }
             }
         }
