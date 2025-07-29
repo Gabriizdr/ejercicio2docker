@@ -2,7 +2,7 @@ pipeline{ //son importantes en los flujos y es la palabra reservada pipeline, se
     agent any //tipo de agente especifico, tipo any, para una configuración general
 
     environment {
-        DOCKER_IMAGE = 'gabiizdraa/ejercicio2docker' //variable de entorno, para que no tengamos que escribir el nombre de la imagen cada vez que la queramos usar, se usa para que sea más fácil de leer y mantener
+        DOCKER_IMAGE = 'gabiizdr/ejercicio2docker' //variable de entorno, para que no tengamos que escribir el nombre de la imagen cada vez que la queramos usar, se usa para que sea más fácil de leer y mantener
     }
 
     triggers { //para que se ejecute de forma automática cada cierto tiempo
@@ -27,7 +27,7 @@ pipeline{ //son importantes en los flujos y es la palabra reservada pipeline, se
         stage('Push'){
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'llave') { //con esta línea nos conectamos al registro de Docker Hub, el segundo parámetro es el ID de las credenciales que tenemos en Jenkins, urilizamos el metodo de docker .withRegistry y las credenciales (identificador especifico que colocamos)para conectarnos al registro de Docker Hub, utiliza el registry que va a apuntar y el segundo son las crednciales pero es el idc
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') { //con esta línea nos conectamos al registro de Docker Hub, el segundo parámetro es el ID de las credenciales que tenemos en Jenkins, urilizamos el metodo de docker .withRegistry y las credenciales (identificador especifico que colocamos)para conectarnos al registro de Docker Hub, utiliza el registry que va a apuntar y el segundo son las crednciales pero es el idc
                         dockerImage.push('latest') //se hace el docker build y docker push concatenado donde nostraemos la iamgen y la pusheamos, y recibe en los parentesis el nombre del tag que le queremos poner a la imagen, en este caso latest, que es el tag por defecto de docker, si no se especifica un tag, se usa latest
                     }
                 }
