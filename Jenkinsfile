@@ -38,7 +38,7 @@ pipeline{ //son importantes en los flujos y es la palabra reservada pipeline, se
                 }
                 failure {
                     script{
-                        def logLines = currentBuild.rawBuild.getLog(100) //obtenemos las últimas 100 líneas del log de la construcción actual
+                        def logLines = currentBuild.rawBuild.getLog(150) //obtenemos las últimas 100 líneas del log de la construcción actual
                         def logText = logLines.join('\n') //unimos las líneas en un solo texto
                         mail to: 'gaby94dr@gmail.com',
                          from: 'gaby94dr@gmail.com',
